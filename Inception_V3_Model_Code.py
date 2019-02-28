@@ -59,6 +59,10 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
     since = time.time()
 
     val_acc_history = []
+    
+    #uncomment below for loading in a state_dict (<filename>.pt)  from a previo$
+    model.load_state_dict(torch.load("/soe/mbriden/cmps240/venv_eeg/inception.p$))
+
 
     best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
