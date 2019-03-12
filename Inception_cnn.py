@@ -35,7 +35,7 @@ print()
 # our classes. One called alcoholic with the alcoholics data and control with control
 # data. ImageFolder loader will automatically assign and keep track of labels.
 #will automatically assign labels
-data_dir = "/soe/mbriden/cmps240/venv_eeg/EEG_Alcoholism_Classification/Data/s1_sep_images/train_val"
+data_dir = "/soe/chvillal/EGG_data/s2_data_cnn_ready"
 
 # Models to choose from [resnet, alexnet, vgg, squeezenet, densenet, inception]
 model_name = "inception"
@@ -84,7 +84,7 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1) + "\n")
         print('-' * 10 + "\n")
-        f.write('{}'.format(epoch) + "\n")
+        f.write('{}'.format(epoch))
         #f.write('-' * 10 + "\n")
 
         # Each epoch has a training and validation phase
@@ -148,7 +148,7 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                 val_acc_history.append(epoch_acc)
             
             print()
-            f.write("\n")
+        f.write("\n")
 
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
@@ -345,5 +345,5 @@ criterion = nn.CrossEntropyLoss()
 
 # Train and evaluate
 model_ft, hist = train_model(model_ft, dataloaders_dict, criterion, optimizer_ft, num_epochs=num_epochs, is_inception=(model_name=="inception"))
-torch.save(model_ft.state_dict(), "/soe/mbriden/cmps240/venv_eeg/inception_s1_full_pretrain_w_loaded_wts_Mixed7abcc_3:4:2:48.pt")
+torch.save(model_ft.state_dict(), "/soe/chvillal/EEG_Alcoholism_Classification/weights/inception_s1_full_pretrain_w_loaded_wts_Mixed7abcc_3_4_2_48.pt")
 
